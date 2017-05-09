@@ -1,0 +1,3 @@
+swc_forum_homepage:
+    path:     /
+    defaults: { _controller: SwcForumBundle:Default:index }

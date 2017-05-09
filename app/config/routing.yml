@@ -1,3 +1,11 @@
+swc_forum:
+    resource: "@SwcForumBundle/Resources/config/routing.yml"
+    prefix:   /
+
+swc_main:
+    resource: "@SwcMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
