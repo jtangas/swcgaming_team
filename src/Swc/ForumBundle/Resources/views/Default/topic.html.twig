@@ -9,7 +9,13 @@
         </div>
         {% for post in topic.getPosts() %}
             <div style="width:100%; background: #333; color: #F5F5F5;">
-                {{ post.getTitle() }}
+                <a href="{{ path('swc_forum_post', {
+                    'forum': post.getTopic().getForum().getCleanName(),
+                    'topic': post.getTopic().getCleanName(),
+                    'post': post.getTitleClean()
+                }) }}">
+                    {{ post.getTitle() }}
+                </a>
             </div>
         {% endfor %}
     {% endif %}

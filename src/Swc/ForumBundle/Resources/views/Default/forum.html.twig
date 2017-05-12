@@ -9,7 +9,7 @@
         </div>
         {% for topic in forum.getTopics() %}
             <div style="width:100%; background: #333; color: #F5F5F5;">
-                {{ topic.getName() }}
+                <a href="{{ path('swc_forum_topic', {'forum': topic.getForum().getCleanName(), 'topic': topic.getCleanName()}) }}">{{ topic.getName() }}</a>
             </div>
         {% endfor %}
     {% endif %}

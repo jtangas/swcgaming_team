@@ -3,7 +3,7 @@
 {% block body %}
     {% for forum in forums %}
         <div style="width:100%; background: #F5F5F5; color #333;">
-            {{ forum.getName() }}
+            <a href="{{ path('swc_forum_board', {'forum': forum.getCleanName()}) }}">{{ forum.getName() }}</a>
         </div>
     {% endfor %}
 {% endblock %}
