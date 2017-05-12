@@ -8,18 +8,19 @@
 
 namespace Swc\ForumBundle\Entity\Traits;
 
+use Swc\MainBundle\Entity\User;
 
 trait CreatedBy
 {
     /**
-     * @var Swc\MainBundle\Entity\User
+     * @var User
      * @ORM\ManyToOne(targetEntity="Swc\MainBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
      */
     protected $createdBy;
 
     /**
-     * @return Swc\MainBundle\Entity\User
+     * @return User
      */
     public function getCreatedBy()
     {
@@ -27,7 +28,7 @@ trait CreatedBy
     }
 
     /**
-     * @param Swc\MainBundle\Entity\User $createdBy
+     * @param User $createdBy
      */
     public function setCreatedBy($createdBy)
     {

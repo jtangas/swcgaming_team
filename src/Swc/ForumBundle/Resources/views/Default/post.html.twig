@@ -1,23 +1,35 @@
-{% extends '::base.html.twig' %}
+{% extends 'SwcForumBundle:Default:forum_template.html.twig' %}
 
 {% block body %}
+    <div class="row">
     {% if post is null %}
-        <div style="color: #C00; font-weight: bold;">NOT FOUND</div>
+        <div class="error-message">NOT FOUND</div>
     {% else %}
-        <div style="width:100%; background: #F5F5F5; color: #333;">
-            {{ post.getTitle() }}
-            <span style="clear:both; font-size: 10px; color: #C82829;">{{ post.getSubTitle() }}</span>
-        </div>
-        <div style="width: 100%; background: #6b9311; color: #F5F5F5;">
-            {{ post.getContent()|raw }}
-        </div>
-        {% for post in replies %}
-            <div style="width:100%; background: #333; color: #F5F5F5;">
-                {{ post.getTitle() }}
+        <div class="large-12 medium-12 columns">
+            <div class="row">
+                <div class="large-2 medium-2 columns">
+                    <h6><strong>Author: </strong>{{ post.getCreatedBy().getUsername() }}<br></h6>
+                    <h6><strong>Posted: </strong>{{ post.getCreatedAt()|date('D M jS, Y @ g:ia') }}</h6>
+                </div>
+                <div class="callout large-10 medium-10 columns">
+                    <h5>{{ post.getTitle() }}</h5>
+                    <h6><span style="font-size: 10px; color: #C82829;">{{ post.getSubTitle() }}</span></h6>
+                    <p>{{ post.getContent()|raw }}</p>
+                </div>
             </div>
-            <div style="width: 100%; background: #dd4444; color: #333333;">
-                {{ post.getContent()|raw }}
+        {% for post in replies %}
+            <div class="callout">
+                <div class="large-pull-8 medium-pull-8 columns">
+                    <div class="large-12 medium-12 columns">
+                        {{ post.getTitle() }}
+                    </div>
+                    <div class="large-12 meidum-12 columns">
+                        {{ post.getContent()|raw }}
+                    </div>
+                </div>
             </div>
         {% endfor %}
+        </div>
     {% endif %}
+    </div>
 {% endblock %}

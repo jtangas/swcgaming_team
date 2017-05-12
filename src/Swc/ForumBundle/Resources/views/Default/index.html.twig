@@ -1,9 +1,11 @@
-{% extends '::base.html.twig' %}
+{% extends 'SwcForumBundle:Default:forum_template.html.twig' %}
 
 {% block body %}
+    <div class="row">
     {% for forum in forums %}
-        <div style="width:100%; background: #F5F5F5; color #333;">
+        <div class="large-12 medium-12 columns">
             <a href="{{ path('swc_forum_board', {'forum': forum.getCleanName()}) }}">{{ forum.getName() }}</a>
         </div>
     {% endfor %}
+    </div>
 {% endblock %}

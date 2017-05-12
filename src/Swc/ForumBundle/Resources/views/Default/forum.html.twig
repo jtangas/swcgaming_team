@@ -1,16 +1,24 @@
-{% extends '::base.html.twig' %}
+{% extends 'SwcForumBundle:Default:forum_template.html.twig' %}
 
 {% block body %}
+    <div class="row">
     {% if forum is null %}
-        <div style="color: #C00; font-weight: bold;">NOT FOUND</div>
+        <div class="error-message">NOT FOUND</div>
     {% else %}
-        <div style="width:100%; background: #F5F5F5; color: #333;">
-            {{ forum.getName() }}
-        </div>
+        <div class="large-12 medium-12 columns">
+            <div class="row">
+                <div class="large-12 medium-12 columns">
+                    {{ forum.getName() }}
+                </div>
+            </div>
         {% for topic in forum.getTopics() %}
-            <div style="width:100%; background: #333; color: #F5F5F5;">
-                <a href="{{ path('swc_forum_topic', {'forum': topic.getForum().getCleanName(), 'topic': topic.getCleanName()}) }}">{{ topic.getName() }}</a>
+            <div class="row">
+                <div class="large-12 medium-12 columns">
+                    <a href="{{ path('swc_forum_topic', {'forum': topic.getForum().getCleanName(), 'topic': topic.getCleanName()}) }}">{{ topic.getName() }}</a>
+                </div>
             </div>
         {% endfor %}
+        </div>
     {% endif %}
+    </div>
 {% endblock %}

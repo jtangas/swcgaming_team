@@ -7,6 +7,7 @@ use Swc\ForumBundle\Entity\Topic;
 use Swc\ForumBundle\Entity\Post;
 use Swc\ForumBundle\Service\ForumService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\VarDumper\VarDumper;
 
 class DefaultController extends Controller
@@ -18,7 +19,7 @@ class DefaultController extends Controller
          */
         $forumService = $this->get('forum');
 
-        $template = 'SwcForumBundle:Default:404.html.twig';
+        $template = null;
         $options = [];
 
         $requestedForum = null;
@@ -41,10 +42,29 @@ class DefaultController extends Controller
             $requestedPost = $forumService->getPost($requestedForum, $requestedTopic, $post);
         }
 
+        $requested = [
+            $requestedForum,
+            $requestedTopic,
+            $requestedPost,
+        ];
+
+        $passed = [
+            $forum,
+            $topic,
+            $post
+        ];
+
+        $is404 = count(array_filter($requested)) != count(array_filter($passed));
+
+        if ($is404) {
+            throw $this->createNotFoundException('This Page Cannot Be Found');
+        }
+
         if ($forum === null && $topic === null && $post === null) {
             $template = 'SwcForumBundle:Default:index.html.twig';
             $options = [
-                'forums' => $forumService->getForums()
+                'forums' => $forumService->getForums(),
+                'env' => $this->get('kernel')->getEnvironment(),
             ];
         }
 
@@ -65,6 +85,10 @@ class DefaultController extends Controller
                 'post' => $requestedPost,
                 'replies' => $forumService->getPostReplies($requestedPost)
             ];
+        }
+
+        if ($template == null) {
+            return $this->createNotFoundException('This Page Cannot Be Found');
         }
 
         return $this->render($template, $options);
