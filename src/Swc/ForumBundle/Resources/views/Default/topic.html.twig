@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% if topic is null %}
+        <div style="color: #C00; font-weight: bold;">NOT FOUND</div>
+    {% else %}
+        <div style="width:100%; background: #F5F5F5; color: #333;">
+            {{ topic.getName() }}
+        </div>
+        {% for post in topic.getPosts() %}
+            <div style="width:100%; background: #333; color: #F5F5F5;">
+                {{ post.getTitle() }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

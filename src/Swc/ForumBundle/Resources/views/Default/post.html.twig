@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% if post is null %}
+        <div style="color: #C00; font-weight: bold;">NOT FOUND</div>
+    {% else %}
+        <div style="width:100%; background: #F5F5F5; color: #333;">
+            {{ post.getTitle() }}
+            <span style="clear:both; font-size: 10px; color: #C82829;">{{ post.getSubTitle() }}</span>
+        </div>
+        <div style="width: 100%; background: #6b9311; color: #F5F5F5;">
+            {{ post.getContent()|raw }}
+        </div>
+        {% for post in replies %}
+            <div style="width:100%; background: #333; color: #F5F5F5;">
+                {{ post.getTitle() }}
+            </div>
+            <div style="width: 100%; background: #dd4444; color: #333333;">
+                {{ post.getContent()|raw }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

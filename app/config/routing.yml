@@ -1,11 +1,10 @@
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
 swc_forum:
     resource: "@SwcForumBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /forum
 
 swc_main:
     resource: "@SwcMainBundle/Resources/config/routing.yml"
     prefix:   /
-
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation

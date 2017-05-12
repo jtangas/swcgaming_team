@@ -2,3 +2,7 @@ services:
 #    swc_forum.example:
 #        class: Swc\ForumBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+    forum:
+        class: Swc\ForumBundle\Service\ForumService
+        arguments:
+            - "@doctrine.orm.default_entity_manager"

@@ -1,3 +1,25 @@
 swc_forum_homepage:
     path:     /
     defaults: { _controller: SwcForumBundle:Default:index }
+
+swc_forum_board:
+    path:     /{forum}{trailingSlash}
+    defaults: { _controller: SwcForumBundle:Default:index, trailingSlash: "/" }
+    requirements:
+        trailingSlash: "[/]{0,1}"
+        method: "GET"
+
+swc_forum_topic:
+    path:     /{forum}/{topic}{trailingSlash}
+    defaults: { _controller: SwcForumBundle:Default:index, trailingSlash: "/" }
+    requirements:
+        trailingSlash: "[/]{0,1}"
+        method: "GET"
+
+swc_forum_post:
+    path:     /{forum}/{topic}/{post}{trailingSlash}
+    defaults: { _controller: SwcForumBundle:Default:index, trailingSlash: "/" }
+    requirements:
+        trailingSlash: "[/]{0,1}"
+        method: "GET"
+
